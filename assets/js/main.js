@@ -1,13 +1,14 @@
-const offset= 0
+const offset = 0
 const limit = 10
-const url =  `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}` 
+const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
 
 
 function convertPokemonToHtml(pokemon) {
+    console.log(pokemon)
     return `
     <li class="pokemon">
     <span class="number">#001</span>
-    <span class="name">${pokemon}</span>
+    <span class="name">${pokemon.name}</span>
     <div class="detail">
         <ol class="types">
             <li class="type">grass</li>
@@ -24,11 +25,9 @@ fetch(url)
     .then((response) => response.json())
     .then((jsonBody) => jsonBody.results)
     .then((pokemons) => {
-        
-        for (let i = 0; i < pokemons.lenght; i++) {
+        for (let i = 0; i < pokemons.length; i++) {
             const pokemon = pokemons[i];
-            pokemonList.innerHTML += convertPokemonToHTML(pokemon)            
+            pokemonList.innerHTML += convertPokemonToHtml(pokemon)
         }
-})
+    })
     .catch((error) => console.error(error))
-
